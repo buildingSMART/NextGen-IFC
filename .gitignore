@@ -1,0 +1,9 @@
+*.aux
+*.log
+*.pdf
+*.tex
+
+__pycache__/
+*.py[co]
+
+output/

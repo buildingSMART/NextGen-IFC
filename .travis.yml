@@ -1,0 +1,17 @@
+language: python
+dist: bionic
+python:
+  - "3.5"
+install:
+  - sudo apt-get install texlive-full imagemagick
+  - sudo rm /etc/ImageMagick-6/policy.xml
+  - python3 -m pip install hilbertcurve
+script:
+  - python3 scripts/main.py
+deploy:
+  provider: s3
+  access_key_id: AKIA4M2LS4GX56RUGT5F
+  secret_access_key:
+    secure: "KuT6uSCAHSbhpZxIU3XBrYFbckUI35Mf3LfZFSxffPj58uerYpDQM48DbCSIbdbVZkHFLwMuP6uXW65bymxHlCShthkRzbPqLAdwdWTUO3tRpxmG9tpVhAZgxYepVtFsGrSHvEGc8cBfL2JH+IjClzQEcWbRan7uVtfdN8Gv6gInNtND+0Pv1yWQiNSgA0nE2iPsduwpenwYi9sz7ZZnikFNI8UsX5iIIovYT2y4GDabi7f3ESyKLwgpR+sQrd6y9+7NTrewpazKIJRuSJuwBVmv/EHx11+WA9DKE66T+66AFAo+Ys/SKOXHTI8mTUV7T076m5fWD1/R1UFXm0GKADa0V8lJ9ZnNtUPcoMzKquBppuHsjBDsYfse1NEMGIuZXG8P27fXSjBu4aLM2T0jIZ0BGc5Mi3pPYNZWsL2TmrCOmPvOvkb9Sr9OPYT9a4OnO+Pb4M2gIRUPhumFi52P4R5+MAiqDM67WgwTYDJQbYmIJuMTNbmSXRpD1PltoYNtj9oiVlFjTl4t0/QPeU1CWThv/lgPJ7URBuWzVqq4wxutCuLoyJn2tpjutoHaI/SIjO8KgjrK5ZraurKdTs8ctF++Ite8F8BwvtVG0K1MDun/e+BPgYoBXE18Kwtxs1QtM0G45TgEw2z0Ks4bBAaWJt9y2qfIfQ3CNLz5K2vJqDA="
+  bucket: buildingsmartifcuml
+  skip_cleanup: true
