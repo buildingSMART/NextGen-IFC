@@ -1,6 +1,6 @@
 # IFC_UML
 
-Schema management and versioning repository for IFC. It is manages by the buildingSMART International Model Support Group under the technical services group.
+Schema management and versioning repository for IFC. 
 
 This repository is to setup the UML/XMI structure to maintain IFC. As new commits to the XMI come in, the Continuous Integration pipeline will be triggered and create two artifacts (a) an EXPRESS serialization of the XMI schema (b) a collection of UML diagrams generated from the defined entities (ignoring explicit diagrams serialized in the XMI).
 
