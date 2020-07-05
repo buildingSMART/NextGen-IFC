@@ -1,5 +1,6 @@
 import re
 import io
+import bisect
 
 from xml.dom import minidom
 from collections import defaultdict
@@ -56,6 +57,8 @@ class doc(base):
     
     def __init__(self, fn):
         self.xml = minidom.parse(fn)
+        self.text = open(fn).read()
+        self.linebreaks = [m.span()[0] for m in re.finditer(r'\n', self.text)]
         self.by_type = defaultdict(list)
         self.by_tag_and_type = defaultdict(lambda: defaultdict(list))
         self.by_id = dict()
@@ -89,3 +92,11 @@ class doc(base):
             register_by_xmi_type,
             register_by_xmi_id,
             register_by_tag_and_xmi_type)
+    
+    def locate(self, node):
+        pat = r'(?<=<)(%s[^\\/]*?xmi:idref="%s"[^\\/]*?)((?= \\/>)|(?=>))' % (node.xml.tagName, node.idref)
+        offset = next(re.finditer(pat, self.text)).span()[0]
+        line_no = bisect.bisect_left(self.linebreaks, offset)
+        char = self.linebreaks[line_no] - offset
+        line_no += 1
+        return (line_no, char)

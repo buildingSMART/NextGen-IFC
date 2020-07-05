@@ -13,5 +13,7 @@ for ffn in glob.glob(relative_path("..", "schemas", "*.xml")):
     print("Processing", fn)
     if not os.path.exists(relative_path("..", "output")): os.makedirs(relative_path("..", "output"))
     subprocess.call([sys.executable, relative_path("to_express.py"), ffn, relative_path("..", "output", fn[:-4] + ".exp")])
+    subprocess.call([sys.executable, relative_path("to_po.py"), ffn, relative_path("..", "output", fn[:-4] + ".po")])
+    subprocess.call([sys.executable, relative_path("to_bsdd.py"), ffn, relative_path("..", "output", fn[:-4] + ".json")])
     subprocess.call([sys.executable, relative_path("process_schema.py"), ffn])
     
