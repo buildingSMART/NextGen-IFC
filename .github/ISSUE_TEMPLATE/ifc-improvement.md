@@ -15,7 +15,7 @@ Is this a proposal to 'add', 'remove' of 'change' entities in the schema (pick o
 
 What do we win:
 
-What do we loose
+What do we lose
 
 Schema impact:
 
